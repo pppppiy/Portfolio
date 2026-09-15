@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Piyush Rajput P — Full Stack Developer &amp; Web Accessibility Engineer</title>
+<meta name="description" content="Portfolio of Piyush Rajput P — MCA student, full stack developer, building expertise in web accessibility (WCAG, WAI-ARIA).">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#16233A;
+    --slate:#3D5A73;
+    --paper:#F6F4EF;
+    --moss:#4C6B4C;
+    --ink:#14171C;
+    --line:#D8D3C6;
+    --focus:#C9622A;
+    --maxw:760px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.01ms !important; transition-duration:0.01ms !important;}
+  }
+
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Serif 4', Georgia, serif;
+    font-size:17px;
+    line-height:1.65;
+  }
+
+  h1,h2,h3,nav,.eyebrow-free,button,.tag,.chip{
+    font-family:'Space Grotesk', system-ui, sans-serif;
+  }
+
+  /* Skip link — visible on focus, standard accessibility pattern */
+  .skip-link{
+    position:absolute;
+    left:-999px;
+    top:auto;
+    background:var(--navy);
+    color:#fff;
+    padding:12px 20px;
+    z-index:100;
+    border-radius:4px;
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:600;
+    text-decoration:none;
+  }
+  .skip-link:focus{
+    left:16px;
+    top:16px;
+  }
+
+  /* Visible focus states everywhere — never remove outline without replacing it */
+  a:focus-visible, button:focus-visible, summary:focus-visible{
+    outline:3px solid var(--focus);
+    outline-offset:3px;
+    border-radius:2px;
+  }
+
+  a{color:var(--navy);}
+  a:hover{color:var(--moss);}
+
+  .layout{
+    display:grid;
+    grid-template-columns:280px 1fr;
+    max-width:1180px;
+    margin:0 auto;
+  }
+
+  /* SIDEBAR */
+  aside{
+    padding:56px 32px;
+    position:sticky;
+    top:0;
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    border-right:1px solid var(--line);
+  }
+  .id-block h1{
+    font-size:1.5rem;
+    font-weight:700;
+    color:var(--navy);
+    margin:0 0 6px;
+    line-height:1.2;
+  }
+  .id-block p.role{
+    font-size:0.95rem;
+    color:var(--slate);
+    margin:0 0 28px;
+    font-weight:500;
+  }
+  nav.side-nav ul{
+    list-style:none;
+    padding:0;
+    margin:0;
+  }
+  nav.side-nav li{margin-bottom:4px;}
+  nav.side-nav a{
+    display:block;
+    padding:8px 10px;
+    margin-left:-10px;
+    text-decoration:none;
+    color:var(--ink);
+    font-size:0.95rem;
+    font-weight:500;
+    border-radius:4px;
+    border-left:3px solid transparent;
+  }
+  nav.side-nav a:hover{
+    background:rgba(61,90,115,0.08);
+  }
+  nav.side-nav a[aria-current="true"]{
+    color:var(--navy);
+    border-left-color:var(--focus);
+    background:rgba(201,98,42,0.07);
+  }
+  .contact-block{font-size:0.9rem;}
+  .contact-block a{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-bottom:10px;
+    color:var(--ink);
+    text-decoration:none;
+  }
+  .contact-block a:hover{color:var(--moss); text-decoration:underline;}
+  .contact-block svg{flex-shrink:0;}
+
+  /* MAIN */
+  main{padding:56px 48px 100px; max-width:100%;}
+  section{max-width:var(--maxw); margin-bottom:64px; scroll-margin-top:32px;}
+  section:last-of-type{margin-bottom:24px;}
+
+  h2{
+    font-size:1.05rem;
+    font-weight:700;
+    color:var(--navy);
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+    margin:0 0 20px;
+    padding-bottom:10px;
+    border-bottom:1px solid var(--line);
+  }
+
+  .summary-text{font-size:1.15rem; color:var(--ink);}
+
+  .skill-group{margin-bottom:18px;}
+  .skill-group h3{
+    font-size:0.85rem;
+    font-weight:600;
+    color:var(--slate);
+    margin:0 0 8px;
+  }
+  .chips{display:flex; flex-wrap:wrap; gap:8px; list-style:none; padding:0; margin:0;}
+  .chip{
+    font-size:0.82rem;
+    font-weight:500;
+    padding:5px 12px;
+    border:1px solid var(--line);
+    border-radius:20px;
+    background:#fff;
+    color:var(--ink);
+  }
+  .chip.learning{
+    border-color:var(--moss);
+    color:var(--moss);
+    background:rgba(76,107,76,0.06);
+  }
+
+  .project{
+    border-left:3px solid var(--slate);
+    padding:2px 0 2px 22px;
+    margin-bottom:36px;
+  }
+  .project h3{
+    font-size:1.15rem;
+    font-weight:600;
+    color:var(--navy);
+    margin:0 0 4px;
+  }
+  .project .meta{
+    font-size:0.82rem;
+    color:var(--slate);
+    font-weight:500;
+    margin-bottom:10px;
+  }
+  .project ul{margin:10px 0; padding-left:20px;}
+  .project li{margin-bottom:6px;}
+  .project .tags{display:flex; flex-wrap:wrap; gap:6px; margin-top:12px;}
+  .tag{
+    font-size:0.72rem;
+    font-weight:600;
+    color:var(--slate);
+    background:rgba(61,90,115,0.08);
+    padding:3px 9px;
+    border-radius:3px;
+  }
+
+  .a11y-note{
+    background:#fff;
+    border:1px solid var(--line);
+    border-left:3px solid var(--focus);
+    padding:20px 24px;
+    border-radius:4px;
+    margin-bottom:20px;
+  }
+  .a11y-note p{margin:0 0 10px;}
+  .a11y-note p:last-child{margin-bottom:0;}
+  .checklist{list-style:none; padding:0; margin:16px 0 0;}
+  .checklist li{
+    display:flex;
+    gap:10px;
+    margin-bottom:10px;
+    font-size:0.92rem;
+    align-items:flex-start;
+  }
+  .checklist svg{flex-shrink:0; margin-top:3px; color:var(--moss);}
+  .checklist code{
+    background:rgba(22,35,58,0.06);
+    padding:1px 6px;
+    border-radius:3px;
+    font-size:0.85em;
+  }
+
+  .cert-list{list-style:none; padding:0; margin:0;}
+  .cert-list li{
+    padding:10px 0;
+    border-bottom:1px solid var(--line);
+    display:flex;
+    justify-content:space-between;
+    gap:16px;
+    flex-wrap:wrap;
+  }
+  .cert-list li:last-child{border-bottom:none;}
+  .cert-name{font-weight:500;}
+  .cert-issuer{color:var(--slate); font-size:0.88rem;}
+
+  footer{
+    max-width:var(--maxw);
+    padding-top:24px;
+    border-top:1px solid var(--line);
+    font-size:0.85rem;
+    color:var(--slate);
+  }
+
+  /* Mobile nav toggle */
+  .menu-toggle{display:none;}
+
+  @media (max-width:860px){
+    .layout{grid-template-columns:1fr;}
+    aside{
+      position:relative;
+      height:auto;
+      border-right:none;
+      border-bottom:1px solid var(--line);
+      padding:24px 24px 20px;
+    }
+    .menu-toggle{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      background:var(--navy);
+      color:#fff;
+      border:none;
+      padding:10px 16px;
+      border-radius:6px;
+      font-size:0.9rem;
+      font-weight:600;
+      cursor:pointer;
+      margin-top:16px;
+    }
+    nav.side-nav{display:none;}
+    nav.side-nav.open{display:block; margin-top:16px;}
+    .contact-block{margin-top:20px;}
+    main{padding:40px 24px 80px;}
+  }
+</style>
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<div class="layout">
+  <aside aria-label="Profile and site navigation">
+    <div>
+      <div class="id-block">
+        <h1>Piyush Rajput P</h1>
+        <p class="role">Full Stack Developer &amp; Web&nbsp;Accessibility Engineer</p>
+      </div>
+
+      <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="sideNav">
+        <span id="menuLabel">Open menu</span>
+      </button>
+
+      <nav class="side-nav" id="sideNav" aria-label="Section navigation">
+        <ul>
+          <li><a href="#summary">Summary</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#accessibility">Accessibility</a></li>
+          <li><a href="#certifications">Certifications</a></li>
+          <li><a href="#education">Education</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="contact-block" aria-label="Contact details">
+      <a href="tel:+918123179041">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+        <span>81231 79041</span>
+      </a>
+      <a href="mailto:ppiyushrajput04@gmail.com">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M4 4h16v16H4z" opacity="0"></path><path d="M22 6l-10 7L2 6"></path><rect x="2" y="4" width="20" height="16" rx="2"></rect></svg>
+        <span>ppiyushrajput04@gmail.com</span>
+      </a>
+      <a href="https://www.linkedin.com/in/ppiyushrajput" target="_blank" rel="noopener noreferrer">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+        <span>linkedin.com/in/ppiyushrajput</span>
+      </a>
+    </div>
+  </aside>
+
+  <main id="main-content">
+
+    <section id="summary" aria-labelledby="summary-h">
+      <h2 id="summary-h">Summary</h2>
+      <p class="summary-text">MCA student and full stack developer (CGPA 8.61) with hands-on experience building recommendation systems and ML-driven web applications. Currently building focused expertise in web accessibility — WCAG 2.x, WAI-ARIA, and assistive-technology testing — and applying it directly, starting with this site.</p>
+    </section>
+
+    <section id="skills" aria-labelledby="skills-h">
+      <h2 id="skills-h">Skills</h2>
+
+      <div class="skill-group">
+        <h3>Programming &amp; Development</h3>
+        <ul class="chips">
+          <li class="chip">JavaScript</li>
+          <li class="chip">HTML</li>
+          <li class="chip">CSS</li>
+          <li class="chip">Java</li>
+          <li class="chip">Node.js</li>
+          <li class="chip">C</li>
+          <li class="chip">React</li>
+          <li class="chip">Python</li>
+        </ul>
+      </div>
+
+      <div class="skill-group">
+        <h3>Accessibility — currently building</h3>
+        <ul class="chips">
+          <li class="chip learning">WCAG 2.1 / 2.2</li>
+          <li class="chip learning">WAI-ARIA</li>
+          <li class="chip learning">NVDA / VoiceOver testing</li>
+          <li class="chip learning">axe DevTools</li>
+          <li class="chip learning">Lighthouse audits</li>
+        </ul>
+      </div>
+
+      <div class="skill-group">
+        <h3>Database &amp; Tools</h3>
+        <ul class="chips">
+          <li class="chip">MySQL Workbench</li>
+          <li class="chip">FastAPI</li>
+          <li class="chip">Scikit-learn</li>
+          <li class="chip">Pandas / NumPy</li>
+          <li class="chip">VS Code</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="projects" aria-labelledby="projects-h">
+      <h2 id="projects-h">Projects</h2>
+
+      <div class="project">
+        <h3>Heart Attack Risk Prediction System for Women</h3>
+        <p class="meta">2026 · Full stack ML application</p>
+        <ul>
+          <li>Built a full-stack ML application to predict cardiovascular risk using a Random Forest model trained on NHANES healthcare data.</li>
+          <li>Developed a FastAPI backend with REST APIs and a React (Vite) frontend for interactive risk assessment.</li>
+        </ul>
+        <div class="tags">
+          <span class="tag">Python</span>
+          <span class="tag">Scikit-learn</span>
+          <span class="tag">FastAPI</span>
+          <span class="tag">React</span>
+          <span class="tag">Pandas</span>
+          <span class="tag">NumPy</span>
+        </div>
+      </div>
+
+      <div class="project">
+        <h3>CampusFitPro — Workout Recommendation System</h3>
+        <p class="meta">2025 · Recommendation system</p>
+        <ul>
+          <li>Developed a system that recommends workout routines for college students based on their preferences and fitness goals.</li>
+        </ul>
+        <div class="tags">
+          <span class="tag">Python</span>
+          <span class="tag">HTML</span>
+          <span class="tag">CSS</span>
+          <span class="tag">MySQL Workbench</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="accessibility" aria-labelledby="a11y-h">
+      <h2 id="a11y-h">How this site is accessible</h2>
+      <div class="a11y-note">
+        <p>This page is itself a small accessibility case study. Rather than just list the skill, here's what's actually implemented and why — each item maps to a real WCAG success criterion.</p>
+        <ul class="checklist">
+          <li>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true" focusable="false"><path d="M20 6L9 17l-5-5"></path></svg>
+            <span>Skip-to-content link, visible on keyboard focus — lets keyboard and screen reader users bypass the navigation. <code>WCAG 2.4.1 Bypass Blocks</code></span>
+          </li>
+          <li>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true" focusable="false"><path d="M20 6L9 17l-5-5"></path></svg>
+            <span>Custom focus outline on every interactive element — never removed without a visible replacement. <code>WCAG 2.4.7 Focus Visible</code></span>
+          </li>
+          <li>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true" focusable="false"><path d="M20 6L9 17l-5-5"></path></svg>
+            <span>Semantic landmarks (<code>header</code>-equivalent, <code>nav</code>, <code>main</code>) with <code>aria-label</code> so screen reader users can jump between regions. <code>WCAG 1.3.1 Info and Relationships</code></span>
+          </li>
+          <li>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true" focusable="false"><path d="M20 6L9 17l-5-5"></path></svg>
+            <span>Single logical heading order (h1 → h2 → h3), no skipped levels, so the page outlines cleanly for assistive tech. <code>WCAG 1.3.1</code> / <code>2.4.6</code></span>
+          </li>
+          <li>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true" focusable="false"><path d="M20 6L9 17l-5-5"></path></svg>
+            <span>Decorative icons marked <code>aria-hidden="true"</code>; the text label next to each carries the meaning instead. <code>WCAG 1.1.1 Non-text Content</code></span>
+          </li>
+          <li>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true" focusable="false"><path d="M20 6L9 17l-5-5"></path></svg>
+            <span>Body text and links meet 4.5:1 contrast against the background; the accent color was checked, not guessed. <code>WCAG 1.4.3 Contrast</code></span>
+          </li>
+          <li>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true" focusable="false"><path d="M20 6L9 17l-5-5"></path></svg>
+            <span>Mobile menu button uses <code>aria-expanded</code> and <code>aria-controls</code>, and is fully operable by keyboard, not just touch/click. <code>WCAG 2.1.1 Keyboard</code> / <code>4.1.2</code></span>
+          </li>
+          <li>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true" focusable="false"><path d="M20 6L9 17l-5-5"></path></svg>
+            <span>Respects <code>prefers-reduced-motion</code> — smooth scroll and transitions turn off for users who've asked for reduced motion at the OS level. <code>WCAG 2.3.3</code></span>
+          </li>
+        </ul>
+      </div>
+      <p style="font-size:0.88rem; color:var(--slate);">Tested manually with keyboard-only navigation and VoiceOver. Next: a full axe DevTools + NVDA pass, documented the same way.</p>
+    </section>
+
+    <section id="certifications" aria-labelledby="cert-h">
+      <h2 id="cert-h">Certifications</h2>
+      <ul class="cert-list">
+        <li><span class="cert-name">Front End Web Developer Certification</span><span class="cert-issuer">Infosys Springboard</span></li>
+        <li><span class="cert-name">Data Structures and Algorithms</span><span class="cert-issuer">Infosys Springboard</span></li>
+        <li><span class="cert-name">TechA Java Developer Certification</span><span class="cert-issuer">Infosys Springboard</span></li>
+        <li><span class="cert-name">Software Engineer Certification</span><span class="cert-issuer">HackerRank</span></li>
+      </ul>
+    </section>
+
+    <section id="education" aria-labelledby="edu-h">
+      <h2 id="edu-h">Education</h2>
+      <div class="project" style="border-left-color:var(--moss);">
+        <h3>Master of Computer Applications</h3>
+        <p class="meta">Dayananda Sagar University, Bangalore · 2025–Present</p>
+      </div>
+      <div class="project" style="border-left-color:var(--moss);">
+        <h3>Bachelor of Computer Applications</h3>
+        <p class="meta">JSS Science and Technology University, Mysore · 2022–2025</p>
+      </div>
+    </section>
+
+    <footer>
+      <p>Built by Piyush Rajput P — designed and coded with accessibility as a requirement, not an afterthought.</p>
+    </footer>
+
+  </main>
+</div>
+
+<script>
+  // Mobile menu toggle
+  const toggle = document.getElementById('menuToggle');
+  const nav = document.getElementById('sideNav');
+  const label = document.getElementById('menuLabel');
+  toggle.addEventListener('click', () => {
+    const isOpen = nav.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', String(isOpen));
+    label.textContent = isOpen ? 'Close menu' : 'Open menu';
+  });
+
+  // Highlight current section in nav using IntersectionObserver
+  const sections = document.querySelectorAll('main section[id]');
+  const navLinks = document.querySelectorAll('nav.side-nav a');
+
+  const setCurrent = (id) => {
+    navLinks.forEach(link => {
+      const isCurrent = link.getAttribute('href') === '#' + id;
+      if (isCurrent) {
+        link.setAttribute('aria-current', 'true');
+      } else {
+        link.removeAttribute('aria-current');
+      }
+    });
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        setCurrent(entry.target.id);
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+
+  sections.forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>
