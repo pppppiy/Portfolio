@@ -335,7 +335,7 @@
 
     <section id="summary" aria-labelledby="summary-h">
       <h2 id="summary-h">Summary</h2>
-      <p class="summary-text">MCA student and full stack developer (CGPA 8.61) with hands-on experience building recommendation systems and ML-driven web applications. Currently building focused expertise in web accessibility — WCAG 2.x, WAI-ARIA, and assistive-technology testing — and applying it directly, starting with this site.</p>
+      <p class="summary-text">MCA student and full stack developer (CGPA 8.96) with hands-on experience building recommendation systems and ML-driven web applications. Currently building focused expertise in web accessibility — WCAG 2.1/2.2, WAI-ARIA, and VoiceOver testing on macOS — and applying it directly, starting with this site, which passed an axe DevTools scan with zero automated issues flagged.</p>
     </section>
 
     <section id="skills" aria-labelledby="skills-h">
@@ -356,12 +356,20 @@
       </div>
 
       <div class="skill-group">
+        <h3>Accessibility</h3>
+        <ul class="chips">
+          <li class="chip">VoiceOver testing (macOS)</li>
+          <li class="chip">axe DevTools</li>
+        </ul>
+      </div>
+
+      <div class="skill-group">
         <h3>Accessibility — currently building</h3>
         <ul class="chips">
           <li class="chip learning">WCAG 2.1 / 2.2</li>
           <li class="chip learning">WAI-ARIA</li>
-          <li class="chip learning">NVDA / VoiceOver testing</li>
-          <li class="chip learning">axe DevTools</li>
+          <li class="chip learning">NVDA</li>
+          <li class="chip learning">VoiceOver on iOS</li>
           <li class="chip learning">Lighthouse audits</li>
         </ul>
       </div>
@@ -381,12 +389,26 @@
     <section id="projects" aria-labelledby="projects-h">
       <h2 id="projects-h">Projects</h2>
 
+      <div class="project" style="border-left-color:var(--moss);">
+        <h3>Accessible Portfolio Website</h3>
+        <p class="meta">2026 · Personal project — you're looking at it</p>
+        <ul>
+          <li>Built with accessibility as a priority throughout development: semantic HTML, ARIA attributes, a skip-navigation link, and visible keyboard focus states.</li>
+          <li>Validated against the WCAG 2.1 AA standard by scanning with axe DevTools (zero issues flagged) and performing manual keyboard and VoiceOver (macOS) testing.</li>
+        </ul>
+        <div class="tags">
+          <span class="tag">HTML</span>
+          <span class="tag">CSS</span>
+          <span class="tag">JavaScript</span>
+        </div>
+      </div>
+
       <div class="project">
         <h3>Heart Attack Risk Prediction System for Women</h3>
         <p class="meta">2026 · Full stack ML application</p>
         <ul>
-          <li>Built a full-stack ML application to predict cardiovascular risk using a Random Forest model trained on NHANES healthcare data.</li>
-          <li>Developed a FastAPI backend with REST APIs and a React (Vite) frontend for interactive risk assessment.</li>
+          <li>Developed a full stack machine learning application for predicting heart attack risk in women using a Random Forest classifier and training data from the National Health and Nutrition Examination Survey (NHANES) healthcare database.</li>
+          <li>Migrated the backend, initially built with Python and Scikit-learn, to a production-ready API using the FastAPI framework, and created a frontend in React (Vite).</li>
         </ul>
         <div class="tags">
           <span class="tag">Python</span>
@@ -402,7 +424,7 @@
         <h3>CampusFitPro — Workout Recommendation System</h3>
         <p class="meta">2025 · Recommendation system</p>
         <ul>
-          <li>Developed a system that recommends workout routines for college students based on their preferences and fitness goals.</li>
+          <li>Built a recommendation system for suggesting workout plans to college students that takes users' preferences and fitness goals into account.</li>
         </ul>
         <div class="tags">
           <span class="tag">Python</span>
@@ -452,7 +474,7 @@
           </li>
         </ul>
       </div>
-      <p style="font-size:0.88rem; color:var(--slate);">Tested manually with keyboard-only navigation and VoiceOver. Next: a full axe DevTools + NVDA pass, documented the same way.</p>
+      <p style="font-size:0.88rem; color:var(--slate);">Tested manually with keyboard-only navigation and VoiceOver on macOS. Automated scan with axe DevTools flagged zero issues. Next: VoiceOver on iOS and an NVDA pass, documented the same way.</p>
     </section>
 
     <section id="certifications" aria-labelledby="cert-h">
@@ -470,6 +492,9 @@
       <div class="project" style="border-left-color:var(--moss);">
         <h3>Master of Computer Applications</h3>
         <p class="meta">Dayananda Sagar University, Bangalore · 2025–Present</p>
+        <ul>
+          <li>Google Student Ambassador — campus representative for Google's student programs (Gold badge)</li>
+        </ul>
       </div>
       <div class="project" style="border-left-color:var(--moss);">
         <h3>Bachelor of Computer Applications</h3>
